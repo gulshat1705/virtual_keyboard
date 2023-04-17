@@ -1,5 +1,15 @@
 body {
-  font-family: "Open Sans", sans-serif;
+  font-family: "Anuphan", sans-serif;
+}
+
+h1 {
+  font-family: "Roboto", sans-serif;
+}
+
+.keyboard__btn, .keyboard, .textarea {
+  -webkit-box-shadow: 0px 2px 8px 0px rgba(34, 60, 80, 0.2);
+  -moz-box-shadow: 0px 2px 8px 0px rgba(34, 60, 80, 0.2);
+  box-shadow: 0px 2px 8px 0px rgba(34, 60, 80, 0.2);
 }
 
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
@@ -330,7 +340,12 @@ body {
 
 h1 {
   text-align: center;
-  color: #FF7549;
+  color: #282829;
+}
+
+.description,
+.language {
+  text-align: center;
 }
 
 .textarea {
@@ -340,6 +355,8 @@ h1 {
   margin: 10px auto 10px;
   padding: 15px;
   font-size: 18px;
+  border-radius: 3px;
+  border: 2px solid #3778bf;
 }
 
 .keyboard {
@@ -348,6 +365,27 @@ h1 {
   border: 2px solid #282829;
   padding: 10px;
   background: #7c7e81;
+}
+
+.keyboard__row {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+
+.ru,
+.en {
+  display: inline-block;
+}
+
+.ru {
+  display: none;
+}
+
+.keyboard__btn {
+  background: #282829;
+  padding: 7px;
+  margin: 2px;
 }
 
 /*# sourceMappingURL=style.css.map */

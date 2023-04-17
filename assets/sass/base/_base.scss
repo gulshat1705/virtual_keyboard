@@ -15,5 +15,10 @@ body {
 
 h1{
     text-align: center;
-    color: $color-additional;
+    color: $color-dark;
+    @extend %font-add;
+}
+.description,
+.language {
+    text-align: center;
 }

@@ -1,8 +1,13 @@
 %font-primary {
-    font-family: 'Open Sans', sans-serif;
-    
+    font-family: 'Anuphan', sans-serif;    
 }
 
 %font-add {
-    font-family: 'Poppins', Verdana, sans-serif;
+    font-family: 'Roboto', sans-serif;
+}
+
+%shadow-primary {
+    -webkit-box-shadow: 0px 2px 8px 0px rgba(34, 60, 80, 0.2);
+    -moz-box-shadow: 0px 2px 8px 0px rgba(34, 60, 80, 0.2);
+    box-shadow: 0px 2px 8px 0px rgba(34, 60, 80, 0.2);
 }

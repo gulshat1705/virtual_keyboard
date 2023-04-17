@@ -4,4 +4,24 @@
     border: 2px solid $color-dark;
     padding: 10px;
     background: $color-light-dark;
+    @extend %shadow-primary;
+}
+
+.keyboard__row{
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+.ru,
+.en {
+    display: inline-block;  
+}
+.ru{
+    display: none;
+}
+.keyboard__btn {
+    background: $color-dark;
+    padding: 7px;
+    margin: 2px;  
+    @extend %shadow-primary;
 }
