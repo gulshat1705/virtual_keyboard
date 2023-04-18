@@ -52,7 +52,24 @@ keyboard__btn.forEach(function(item){
     item.insertAdjacentHTML('afterBegin', '<p class="ru"></p>');
     item.insertAdjacentHTML('beforeEnd', '<p class="en"></p>');    
 })
+const en = document.querySelectorAll('.en');
 
-let firstRow = ['`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', '']
+function createKeys() {
+    const fragment = document.createDocumentFragment();
 
+    let keyContent = [
+       "`", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "=", "Backspace",
+       "Tab", "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "[", "]", "\\", "Del",
+       "CapsLock", "a", "s", "d", "f", "g", "h", "j", "k", "l", ";", "'", "Enter",
+       "Shift", "z", "x", "c", "v", "b", "n", "m", ",", ".", "/", "&#708;", "Shift",
+       "Ctrl", "Win", "Alt", "Space", "Alt", "&#706;", "&#709;", "&#707;", "Ctrl"   
+    ];
+ 
+    const insertLineBreak = ["Backspace", "Del", "Enter", "Shift", "Ctrl"];
+        for(let i=0; i<keyContent.length; i++) {
+            en[i].textContent = keyContent[i];
+    }
+    return keyContent;  
+}
 
+createKeys();
