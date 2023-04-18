@@ -34,12 +34,12 @@ const keyboard__row = document.querySelectorAll('.keyboard__row');
 
 
 for(let i=0; i<keyboard__row.length; i++) {
-    if(i===1) {
+    if(i===0) {
         keyboard__row[i].innerHTML = Array(14).fill('<div class="keyboard__btn"></div>').join('');
-    } else if (i === 2) {
+    } else if (i === 1) {
         keyboard__row[i].innerHTML = Array(15).fill('<div class="keyboard__btn"></div>').join('');
-    } else if (i === 5) {
-        keyboard__row[i].innerHTML = Array(19).fill('<div class="keyboard__btn"></div>').join('');
+    } else if (i === 4) {
+        keyboard__row[i].innerHTML = Array(9).fill('<div class="keyboard__btn"></div>').join('');
     } else {
         keyboard__row[i].innerHTML = Array(13).fill('<div class="keyboard__btn"></div>').join('');
     }    
@@ -52,10 +52,10 @@ keyboard__btn.forEach(function(item){
     item.insertAdjacentHTML('afterBegin', '<p class="ru"></p>');
     item.insertAdjacentHTML('beforeEnd', '<p class="en"></p>');    
 })
-const en = document.querySelectorAll('.en');
+
 
 function createKeys() {
-    const fragment = document.createDocumentFragment();
+    const en = document.querySelectorAll('.en');
 
     let keyContent = [
        "`", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "=", "Backspace",

@@ -20,8 +20,13 @@
     display: none;
 }
 .keyboard__btn {
+    width: 50px;
+    height: 50px;
     background: $color-dark;
-    padding: 7px;
     margin: 2px;  
-    @extend %shadow-primary;
+    text-align: center;
+    vertical-align: middle;
+    border-radius: 5px;
+    color: $color-light-dark;
+    // @extend %shadow-add;
 }
