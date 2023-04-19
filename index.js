@@ -53,9 +53,9 @@ keyboard__btn.forEach(function(item){
     item.insertAdjacentHTML('beforeEnd', '<p class="en"></p>');    
 })
 
-
+const en = document.querySelectorAll('.en');
 function createKeys() {
-    const en = document.querySelectorAll('.en');
+    
 
     let keyContent = [
        "`", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "=", "Backspace",
@@ -64,10 +64,14 @@ function createKeys() {
        "Shift", "z", "x", "c", "v", "b", "n", "m", ",", ".", "/", "&#708;", "Shift",
        "Ctrl", "Win", "Alt", "Space", "Alt", "&#706;", "&#709;", "&#707;", "Ctrl"   
     ];
- 
-    const insertLineBreak = ["Backspace", "Del", "Enter", "Shift", "Ctrl"];
-        for(let i=0; i<keyContent.length; i++) {
-            en[i].textContent = keyContent[i];
+
+    for(let i=0; i<keyContent.length; i++) {
+        en[i].textContent = keyContent[i];
+        if(typeof Number(keyContent[i]) === 'number') {
+            keyboard__btn[i].classList.add('number'+keyContent[i]);
+        } else if(keyContent[i] === 'Backspace' || ) {
+            keyboard__btn[i].classList.add(keyContent[i]);
+        }
     }
     return keyContent;  
 }
