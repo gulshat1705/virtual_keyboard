@@ -54,8 +54,7 @@ keyboard__btn.forEach(function(item){
 })
 
 const en = document.querySelectorAll('.en');
-function createKeys() {
-    
+function createKeys() {    
 
     let keyContent = [
        "`", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "=", "Backspace",
@@ -66,14 +65,29 @@ function createKeys() {
     ];
 
     for(let i=0; i<keyContent.length; i++) {
+        let checkNaN = NaN;
         en[i].textContent = keyContent[i];
-        if(typeof Number(keyContent[i]) === 'number') {
+        if(typeof Number(keyContent[i]) === 'number' && Number(keyContent[i])) {
+            console.log(Number(keyContent[i]));
             keyboard__btn[i].classList.add('number'+keyContent[i]);
-        } else if(keyContent[i] === 'Backspace' || ) {
-            keyboard__btn[i].classList.add(keyContent[i]);
+        } else {
+            keyboard__btn[i].classList.add('Key'+keyContent[i]);
         }
     }
     return keyContent;  
 }
 
 createKeys();
+
+window.addEventListener(
+    "keydown",
+    (event) => {
+        console.log(`KeyboardEvent: key='${event.key}' | code='${event.code}'`)
+      
+    //   textarea.textContent = `KeyboardEvent: key='${event.key}' | code='${event.code}'`;
+
+    //   document.getElementById("output").appendChild(p);
+      window.scrollTo(0, document.body.scrollHeight);
+    },
+    true
+  );
