@@ -229,22 +229,6 @@ let result = contentValue(keys);
 
 
 
-let classValue = (keys) => {
-    let classArray = [];
-    for (let item of keys) {
-        if(item.itemClass === null && Number(item.content) === 'number') {
-            for (let i =0; i<contentIsNum.length; i++) {
-                item.className = 'number'+i;
-            }
-        }
-        classArray.push(item.itemClass);
-    }
-    
-    return classArray.flat();
-} 
-
-let addClass = classValue(keys);
-
 for(let i=0; i<en.length; i++) {
     en[i].textContent = result[i];
         
