@@ -246,6 +246,10 @@ for(let i=0; i<en.length; i++) {
             
             )
         //   console.log(otherValues[3].itemClass); 
+        console.log(en[i])
+        let r = keys.filter(o => en[i] === o.content);
+            console.log(r.itemClass)
+        // en[i].classList.add(`${keys.itemClass}`)
         }   
         
 }
