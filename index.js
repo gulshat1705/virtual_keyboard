@@ -230,11 +230,7 @@ let result = contentValue(keys);
 
 
 let classValue = (keys) => {
-    let ids = keys.map(function (item) {
-        return parseInt(item.content, 10);
-      });
-
-      let classArray = [];
+    let classArray = [];
     for (let item of keys) {
         if(item.itemClass === null && Number(item.content) === 'number') {
             for (let i =0; i<contentIsNum.length; i++) {
@@ -243,6 +239,7 @@ let classValue = (keys) => {
         }
         classArray.push(item.itemClass);
     }
+    
     return classArray.flat();
 } 
 
@@ -260,12 +257,11 @@ for(let i=0; i<en.length; i++) {
     } else if(Boolean(result[i].match(/^[A-Za-z]*$/) && result[i].length === 1)) {
         en[i].classList.add('letter'+result[i].toUpperCase());
     } else {
-        let otherValues = keys.filter(obj => {
-            return obj.itemClass !== null;
-          })
-          console.log(otherValues[3].itemClass); 
-
-          
+        keys.find(
+            obj => obj.itemClass !== null
+            
+            )
+        //   console.log(otherValues[3].itemClass); 
         }   
         
 }
