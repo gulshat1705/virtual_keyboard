@@ -252,16 +252,22 @@ for(let i=0; i<en.length; i++) {
     en[i].textContent = result[i];
         
     if(Number(result[i])) {
-        en[i].className = 'number'+i;
+        en[i].classList.add('number'+i);
         if(result[i]==='0') {
-            en[i].className = 'number0';
+            en[i].classList.add('number0');
         } 
 
     } else if(Boolean(result[i].match(/^[A-Za-z]*$/) && result[i].length === 1)) {
         en[i].classList.add('letter'+result[i].toUpperCase());
     } else {
-        // en[i].classList.add(keys.itemClass)
-    }    
+        let otherValues = keys.filter(obj => {
+            return obj.itemClass !== null;
+          })
+          console.log(otherValues[3].itemClass); 
+
+          
+        }   
+        
 }
 
 
