@@ -393,4 +393,10 @@ h1 {
   color: #ffffff;
 }
 
+.backspace,
+.capslock,
+.shift-left {
+  width: 100px;
+}
+
 /*# sourceMappingURL=style.css.map */

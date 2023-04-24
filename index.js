@@ -227,31 +227,31 @@ let contentValue = (keys) => {
 
 let result = contentValue(keys);
 
-
-
 for(let i=0; i<en.length; i++) {
     en[i].textContent = result[i];
         
     if(Number(result[i])) {
-        en[i].classList.add('number'+i);
+        keyboard__btn[i].classList.add('number'+i);
         if(result[i]==='0') {
-            en[i].classList.add('number0');
+            keyboard__btn[i].classList.add('number0');
         } 
 
     } else if(Boolean(result[i].match(/^[A-Za-z]*$/) && result[i].length === 1)) {
-        en[i].classList.add('letter'+result[i].toUpperCase());
+        keyboard__btn[i].classList.add('letter'+result[i].toUpperCase());
     } else {
-        keys.find(
-            obj => obj.itemClass !== null
-            
-            )
-        //   console.log(otherValues[3].itemClass); 
-        console.log(en[i])
-        let r = keys.filter(o => en[i] === o.content);
-            console.log(r.itemClass)
-        // en[i].classList.add(`${keys.itemClass}`)
-        }   
-        
+        const search = what => keys.find(element => element.content === what);
+        const found = search(en[i].textContent);
+        if (found) {
+            keyboard__btn[i].classList.add(found.itemClass);
+        } else {
+            console.log('No result found');
+        }
+
+        const elements = document.querySelectorAll('.control-left');
+        elements.forEach((element) => {
+            element.classList.add('control-right');
+        })
+    }           
 }
 
 

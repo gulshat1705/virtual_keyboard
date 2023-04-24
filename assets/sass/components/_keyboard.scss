@@ -30,3 +30,9 @@
     color: #ffffff;
     // @extend %shadow-add;
 }
+
+.backspace,
+.capslock, 
+.shift-left{
+    width: 100px;
+}
