@@ -2,14 +2,42 @@ body {
   font-family: "Anuphan", sans-serif;
 }
 
-h1 {
+.textarea, h1 {
   font-family: "Roboto", sans-serif;
 }
 
-.keyboard, .textarea {
-  -webkit-box-shadow: 0px 2px 8px 0px rgba(34, 60, 80, 0.2);
-  -moz-box-shadow: 0px 2px 8px 0px rgba(34, 60, 80, 0.2);
-  box-shadow: 0px 2px 8px 0px rgba(34, 60, 80, 0.2);
+.keyboard__btn:active, .keyboard {
+  -webkit-box-shadow: inset 5px 5px 10px -5px rgb(124, 126, 129);
+  -moz-box-shadow: inset 5px 5px 10px -5px rgb(124, 126, 129);
+  box-shadow: inset 5px 5px 10px -5px rgb(124, 126, 129);
+}
+
+.keyboard__btn {
+  -webkit-box-shadow: 5px 5px 5px 0px rgb(40, 40, 41);
+  -moz-box-shadow: 5px 5px 5px 0px rgb(40, 40, 41);
+  box-shadow: 5px 5px 5px 0px rgb(40, 40, 41);
+}
+
+.tab,
+.capslock,
+.shift-left,
+.shift-right,
+.window,
+.alt-left,
+.alt-right,
+.space,
+.enter,
+.delete,
+.backspace,
+.control-left,
+.control-right,
+.arrow-left,
+.arrow-right,
+.arrow-down,
+.arrow-up {
+  -webkit-box-shadow: 1px 0px 9px 0px rgb(225, 235, 227);
+  -moz-box-shadow: 1px 0px 9px 0px rgb(225, 235, 227);
+  box-shadow: 1px 0px 9px 0px rgb(225, 235, 227);
 }
 
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
@@ -354,9 +382,14 @@ h1 {
   height: 250px;
   margin: 10px auto 10px;
   padding: 15px;
-  font-size: 18px;
   border-radius: 3px;
   border: 2px solid #3778bf;
+  background: #282829;
+  color: #e1ebe3;
+  font-size: 1.8rem;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1.8rem;
 }
 
 .keyboard {
@@ -385,18 +418,72 @@ h1 {
 .keyboard__btn {
   width: 50px;
   height: 50px;
-  background: #282829;
-  margin: 2px;
+  background: #e1ebe3;
+  margin: 4px 2px;
   text-align: center;
   vertical-align: middle;
   border-radius: 5px;
-  color: #ffffff;
+  color: #282829;
+  font-size: 1.8rem;
+  font-style: normal;
+  font-weight: bold;
+  line-height: 1.8rem;
+}
+.keyboard__btn:hover {
+  background: #3778bf;
+  color: #e1ebe3;
+}
+.keyboard__btn:active {
+  background: #FF7549;
 }
 
 .backspace,
 .capslock,
 .shift-left {
-  width: 100px;
+  width: 95px;
+}
+
+.shift-right,
+.enter {
+  width: 135px;
+}
+
+.space {
+  width: 370px;
+}
+
+.control-left,
+.control-right,
+.arrow-left,
+.arrow-right,
+.arrow-down,
+.arrow-up {
+  width: 60px;
+}
+
+.tab,
+.capslock,
+.shift-left,
+.shift-right,
+.window,
+.alt-left,
+.alt-right,
+.space,
+.enter,
+.delete,
+.backspace,
+.control-left,
+.control-right,
+.arrow-left,
+.arrow-right,
+.arrow-down,
+.arrow-up {
+  background: #282829;
+  color: #e1ebe3;
+  font-size: 1em;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1em;
 }
 
 /*# sourceMappingURL=style.css.map */

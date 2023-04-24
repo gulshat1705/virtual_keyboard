@@ -126,12 +126,12 @@ let keys = [
     },
     {
         id: 26,
-        itemClass: 'alt',
+        itemClass: 'alt-left',
         content: 'Alt', 
     },
     {
         id: 27,
-        itemClass: 'Space',
+        itemClass: 'space',
         content: ' ', 
     },
     {
@@ -227,6 +227,35 @@ let contentValue = (keys) => {
 
 let result = contentValue(keys);
 
+
+function hasClass(el, className)
+{
+    if (el.classList)
+        return el.classList.contains(className);
+    return !!el.className.match(new RegExp('(\\s|^)' + className + '(\\s|$)'));
+}
+
+function addClass(el, className)
+{
+    if (el.classList)
+        el.classList.add(className)
+    else if (!hasClass(el, className))
+        el.className += " " + className;
+}
+
+function removeClass(el, className)
+{
+    if (el.classList)
+        el.classList.remove(className)
+    else if (hasClass(el, className))
+    {
+        var reg = new RegExp('(\\s|^)' + className + '(\\s|$)');
+        el.className = el.className.replace(reg, ' ');
+    }
+}
+
+
+
 for(let i=0; i<en.length; i++) {
     en[i].textContent = result[i];
         
@@ -243,18 +272,36 @@ for(let i=0; i<en.length; i++) {
         const found = search(en[i].textContent);
         if (found) {
             keyboard__btn[i].classList.add(found.itemClass);
-        } else {
-            console.log('No result found');
         }
-
-        const elements = document.querySelectorAll('.control-left');
-        elements.forEach((element) => {
-            element.classList.add('control-right');
-        })
+        //  else {
+        //     console.log('No result found');
+        // }     
     }           
 }
 
+let ctrlBtn = document.getElementsByClassName('control-left')[1];
+let shiftBtn = document.getElementsByClassName('shift-left')[1];
+let altBtn = document.getElementsByClassName('alt-left')[1];
 
+removeClass(ctrlBtn, 'control-left')
+addClass(ctrlBtn, 'control-right')
+
+removeClass(shiftBtn, 'shift-left');
+addClass(shiftBtn, 'shift-right');
+
+removeClass(altBtn, 'alt-left');
+addClass(altBtn, 'alt-right');
+
+
+const capslock = document.querySelector('.capslock');
+
+capslock.addEventListener(
+    'keydown',
+    (event) => {
+        event.key.toUpperCase();
+        console.log(event.target, 'l')
+    }
+)
 
 // window.addEventListener(
 //     "keydown",
@@ -279,6 +326,7 @@ for(let i=0; i<en.length; i++) {
 function keyboardEvents(e) {
     e.preventDefault();
     textarea.textContent += e.key;
+    console.log(e.key);
     // keyCodeEvent.textContent = e.keyCode;
     // CodeEvent.textContent = e.code;
     // whichEvent.textContent = e.which;
