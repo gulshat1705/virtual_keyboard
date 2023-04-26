@@ -293,16 +293,42 @@ removeClass(altBtn, 'alt-left');
 addClass(altBtn, 'alt-right');
 
 
-const capslock = document.querySelector('.capslock');
+const $key = (key) => (
+    document.querySelector(`div[class='keyboard__btn ${key}']`)
+  );
+  
+const codeToElement = {
+    'CapsLock': $key('capslock'),
+    'Space': $key('space'),
+    'Backspace': $key('backspace'),
+    'Backquote': $key('backquote'),
+    'ShiftLeft': $key('shift-left'),
+    'ShiftRight': $key('shift-right'),
+    'ControlLeft': $key('control-left'),
+    'ControlRight': $key('control-right'),
+    'AltLeft': $key('alt-left'),
+    'AltRight': $key('alt-right'),
+    'MetaLeft': $key('window'),
+    
+}
 
-capslock.addEventListener(
-    'keydown',
-    (event) => {
-        event.key.toUpperCase();
-        console.log(event.target, 'l')
+window.addEventListener('keydown', (e) => {
+    console.log(e);
+    const el = codeToElement[e.code] || $key(e.key.toLowerCase());
+    if (el) { 
+        el.classList.toggle('active-key');
+        console.log('toggle')
+    //   e.preventDefault();
+    } 
+});
+
+window.addEventListener('keyup', (e) => {
+    const el = codeToElement[e.code] || $key(e.key.toLowerCase());
+    if (el) {  
+        el.classList.remove('pressed'); 
+        e.preventDefault();
     }
-)
-
+})
 // window.addEventListener(
 //     "keydown",
 //     (event) => {
@@ -323,13 +349,13 @@ capslock.addEventListener(
 //   );
 
   //Function
-function keyboardEvents(e) {
-    e.preventDefault();
-    textarea.textContent += e.key;
-    console.log(e.key);
-    // keyCodeEvent.textContent = e.keyCode;
-    // CodeEvent.textContent = e.code;
-    // whichEvent.textContent = e.which;
-    }
-    // Event Handler
-    window.addEventListener("keydown", keyboardEvents);
+// function keyboardEvents(e) {
+//     e.preventDefault();
+//     textarea.textContent += e.key;
+//     console.log(e.key);
+//     // keyCodeEvent.textContent = e.keyCode;
+//     // CodeEvent.textContent = e.code;
+//     // whichEvent.textContent = e.which;
+//     }
+//     // Event Handler
+//     window.addEventListener("keydown", keyboardEvents);
