@@ -273,9 +273,6 @@ for(let i=0; i<en.length; i++) {
         if (found) {
             keyboard__btn[i].classList.add(found.itemClass);
         }
-        //  else {
-        //     console.log('No result found');
-        // }     
     }           
 }
 
@@ -294,14 +291,18 @@ addClass(altBtn, 'alt-right');
 
 
 const $key = (key) => (
-    document.querySelector(`div[class='keyboard__btn ${key}']`)
-  );
-  
+    document.querySelector(`div[class='keyboard__btn ${key}']`)    
+);
+
+
 const codeToElement = {
+    'Tab': $key('tab'),
     'CapsLock': $key('capslock'),
     'Space': $key('space'),
     'Backspace': $key('backspace'),
     'Backquote': $key('backquote'),
+    'Enter': $key('enter'),
+    'Delete': $key('delete'),
     'ShiftLeft': $key('shift-left'),
     'ShiftRight': $key('shift-right'),
     'ControlLeft': $key('control-left'),
@@ -309,53 +310,49 @@ const codeToElement = {
     'AltLeft': $key('alt-left'),
     'AltRight': $key('alt-right'),
     'MetaLeft': $key('window'),
-    
 }
 
 window.addEventListener('keydown', (e) => {
-    console.log(e);
+
     const el = codeToElement[e.code] || $key(e.key.toLowerCase());
     if (el) { 
-        el.classList.toggle('active-key');
-        console.log('toggle')
-    //   e.preventDefault();
+        if(e.code === 'CapsLock') {
+            el.classList.toggle('active-key');
+        } else {
+            el.classList.add('active-key');
+        }        
+      e.preventDefault();
     } 
+
+    textarea.textContent += e.key; 
+    if(e.code === en.textContent) {
+        console.log(`KeyboardEvent: key='${e.key}' | code='${e.code}'`);
+        el.classList.add('active-key');
+    }
+    window.scrollTo(0, document.body.scrollHeight);
 });
 
 window.addEventListener('keyup', (e) => {
     const el = codeToElement[e.code] || $key(e.key.toLowerCase());
-    if (el) {  
-        el.classList.remove('pressed'); 
+    if (e.code !== 'CapsLock') {  
+        el.classList.remove('active-key'); 
         e.preventDefault();
+    } 
+
+    if(e.code === en.textContent) {
+        console.log(`KeyboardEvent: key='${e.key}' | code='${e.code}'`);
+        el.classList.remove('active-key');
     }
 })
-// window.addEventListener(
-//     "keydown",
-//     (event) => {
 
-//         for(let i=0; i<en.length;i++) {
-//             en[i].textContent = event.key;
-//         }
 
-//         console.log(`KeyboardEvent: key='${event.key}' | code='${event.code}'`)
-//         console.log(key);
-      
-//     //   textarea.textContent = `KeyboardEvent: key='${event.key}' | code='${event.code}'`;
-
-//     //   document.getElementById("output").appendChild(p);
-//       window.scrollTo(0, document.body.scrollHeight);
-//     },
-//     true
-//   );
-
-  //Function
-// function keyboardEvents(e) {
-//     e.preventDefault();
-//     textarea.textContent += e.key;
-//     console.log(e.key);
-//     // keyCodeEvent.textContent = e.keyCode;
-//     // CodeEvent.textContent = e.code;
-//     // whichEvent.textContent = e.which;
-//     }
-//     // Event Handler
-//     window.addEventListener("keydown", keyboardEvents);
+window.addEventListener(
+    "keydown",
+    (event) => {
+      const p = document.createElement("p");
+      p.textContent = `KeyboardEvent: key='${event.key}' | code='${event.code}'`;
+      console.log(p);
+      window.scrollTo(0, document.body.scrollHeight);
+    },
+    true
+  );
