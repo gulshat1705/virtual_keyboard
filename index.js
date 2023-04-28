@@ -255,7 +255,6 @@ function removeClass(el, className)
 }
 
 
-
 for(let i=0; i<en.length; i++) {
     en[i].textContent = result[i];
         
@@ -313,8 +312,29 @@ const codeToElement = {
 }
 
 window.addEventListener('keydown', (e) => {
-
     const el = codeToElement[e.code] || $key(e.key.toLowerCase());
+    let name = e.key;
+    
+ 
+//     let findKey = [...document.querySelectorAll(".en")]
+//    .filter(a => a.textContent.includes(name));
+
+//    for(item in findKey) {
+//     if(findKey.length === 1) {
+//         console.log('hey', findKey);
+//         findKey.className = 'en active-key'
+//     }    
+//    }
+
+
+   for (let div of document.getElementsByClassName('en')) {
+    if (div.textContent.includes(name) || div.textContent.length === 1) {
+        console.log(div);
+        div.parentElement.nodeName.classList.add('active-key');
+    }
+    
+   }
+
     if (el) { 
         if(e.code === 'CapsLock') {
             el.classList.toggle('active-key');
@@ -326,8 +346,7 @@ window.addEventListener('keydown', (e) => {
 
     textarea.textContent += e.key; 
     if(e.code === en.textContent) {
-        console.log(`KeyboardEvent: key='${e.key}' | code='${e.code}'`);
-        el.classList.add('active-key');
+        el.classList.toggle('active-key');
     }
     window.scrollTo(0, document.body.scrollHeight);
 });
@@ -339,20 +358,9 @@ window.addEventListener('keyup', (e) => {
         e.preventDefault();
     } 
 
+    console.log(e.target.textContent);
     if(e.code === en.textContent) {
-        console.log(`KeyboardEvent: key='${e.key}' | code='${e.code}'`);
         el.classList.remove('active-key');
     }
-})
-
-
-window.addEventListener(
-    "keydown",
-    (event) => {
-      const p = document.createElement("p");
-      p.textContent = `KeyboardEvent: key='${event.key}' | code='${event.code}'`;
-      console.log(p);
-      window.scrollTo(0, document.body.scrollHeight);
-    },
-    true
-  );
+    window.scrollTo(0, document.body.scrollHeight);
+})  
