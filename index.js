@@ -332,8 +332,15 @@ window.addEventListener('keydown', (e) => {
         console.log(div);
         div.parentElement.nodeName.classList.add('active-key');
     }
-    
    }
+
+   const child = document.getElementById('child');
+
+child.addEventListener('click', function handleClick(event) {
+  // 👇️ "parent"
+  console.log(event.target.parentElement.id);
+});
+
 
     if (el) { 
         if(e.code === 'CapsLock') {
