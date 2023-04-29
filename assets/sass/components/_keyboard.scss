@@ -37,6 +37,8 @@
     }
     &.active-key {
         background: $color-additional;
+        color: #ffffff;
+        font-weight: 100;
         @extend %shadow-primary;        
     }
 }

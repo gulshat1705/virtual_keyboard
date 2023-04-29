@@ -414,6 +414,8 @@ h1 {
 }
 .keyboard__btn.active-key {
   background: #008080;
+  color: #ffffff;
+  font-weight: 100;
 }
 
 .backspace,

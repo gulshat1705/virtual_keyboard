@@ -311,40 +311,55 @@ const codeToElement = {
     'MetaLeft': $key('window'),
 }
 
+const CapsLockOn = () => {
+    let letters = document.getElementsByClassName('en');
+    for(let i=0; i<letters.length; i++) {
+        let letterContent = letters[i].textContent;
+        letters[i].innerHTML = letterContent.toLocaleUpperCase();
+    }
+}
+
+const CapsLockOff = () => {
+    let letters = document.getElementsByClassName('en');
+    for(let i=0; i<letters.length; i++) {
+        let letterContent = letters[i].textContent;
+        letters[i].innerHTML = letterContent.toLocaleLowerCase();
+    }
+}
+
 window.addEventListener('keydown', (e) => {
     const el = codeToElement[e.code] || $key(e.key.toLowerCase());
     let name = e.key;
     
  
-//     let findKey = [...document.querySelectorAll(".en")]
-//    .filter(a => a.textContent.includes(name));
+    let findKey = [...document.querySelectorAll(".en")]
+   .filter(a => a.textContent.includes(name));
 
-//    for(item in findKey) {
-//     if(findKey.length === 1) {
-//         console.log('hey', findKey);
-//         findKey.className = 'en active-key'
-//     }    
-//    }
-
-
-   for (let div of document.getElementsByClassName('en')) {
-    if (div.textContent.includes(name) || div.textContent.length === 1) {
-        console.log(div);
-        div.parentElement.nodeName.classList.add('active-key');
-    }
+    for(item in findKey) {
+        if(findKey.length === 1) {
+            console.log('hey', findKey);
+            findKey.className = 'en active-key'
+        }    
    }
 
-   const child = document.getElementById('child');
 
-child.addEventListener('click', function handleClick(event) {
-  // 👇️ "parent"
-  console.log(event.target.parentElement.id);
-});
-
+    for (let div of document.getElementsByClassName('en')) {
+        if (div.textContent.includes(name) && div.textContent.length === 1) {
+            div.parentElement.classList.add('active-key');
+        }
+   }
 
     if (el) { 
-        if(e.code === 'CapsLock') {
+        let letters = document.getElementsByClassName('en');
+        
+        if(e.code === 'CapsLock') {            
             el.classList.toggle('active-key');
+            if(el.classList.contains('active-key')) {
+                CapsLockOn();
+            } else {
+                CapsLockOff();
+            }
+            
         } else {
             el.classList.add('active-key');
         }        
@@ -358,16 +373,18 @@ child.addEventListener('click', function handleClick(event) {
     window.scrollTo(0, document.body.scrollHeight);
 });
 
+
 window.addEventListener('keyup', (e) => {
     const el = codeToElement[e.code] || $key(e.key.toLowerCase());
-    if (e.code !== 'CapsLock') {  
-        el.classList.remove('active-key'); 
-        e.preventDefault();
-    } 
+    const divs = document.querySelector('.active-key');
+    console.log(divs);
 
-    console.log(e.target.textContent);
-    if(e.code === en.textContent) {
-        el.classList.remove('active-key');
+    if (e.code !== 'CapsLock' && divs) { 
+        divs.classList.remove('active-key');
+        e.preventDefault();
     }
-    window.scrollTo(0, document.body.scrollHeight);
-})  
+    if(e.code === en.textContent) {
+            el.classList.remove('active-key');
+        }
+        window.scrollTo(0, document.body.scrollHeight);
+})
