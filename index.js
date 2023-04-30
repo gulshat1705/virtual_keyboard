@@ -2,7 +2,7 @@ let keys = [
     {
         id: 1,
         itemClass: 'backquote',
-        content: '`'
+        content: "`",
     },
     {
         id: 2,
@@ -228,23 +228,20 @@ let contentValue = (keys) => {
 let result = contentValue(keys);
 
 
-function hasClass(el, className)
-{
+function hasClass(el, className) {
     if (el.classList)
         return el.classList.contains(className);
     return !!el.className.match(new RegExp('(\\s|^)' + className + '(\\s|$)'));
 }
 
-function addClass(el, className)
-{
+function addClass(el, className){
     if (el.classList)
         el.classList.add(className)
     else if (!hasClass(el, className))
         el.className += " " + className;
 }
 
-function removeClass(el, className)
-{
+function removeClass(el, className) {
     if (el.classList)
         el.classList.remove(className)
     else if (hasClass(el, className))
@@ -311,19 +308,24 @@ const codeToElement = {
     'MetaLeft': $key('window'),
 }
 
+
 const CapsLockOn = () => {
     let letters = document.getElementsByClassName('en');
     for(let i=0; i<letters.length; i++) {
         let letterContent = letters[i].textContent;
-        letters[i].innerHTML = letterContent.toLocaleUpperCase();
-    }
+        if(letterContent.length === 1) {
+            letters[i].innerHTML = letterContent.toLocaleUpperCase();
+        }        
+    }        
 }
 
 const CapsLockOff = () => {
     let letters = document.getElementsByClassName('en');
     for(let i=0; i<letters.length; i++) {
         let letterContent = letters[i].textContent;
-        letters[i].innerHTML = letterContent.toLocaleLowerCase();
+        if(letterContent.length === 1) {
+            letters[i].innerHTML = letterContent.toLocaleLowerCase();
+        }
     }
 }
 
@@ -342,31 +344,33 @@ window.addEventListener('keydown', (e) => {
         }    
    }
 
-
     for (let div of document.getElementsByClassName('en')) {
         if (div.textContent.includes(name) && div.textContent.length === 1) {
             div.parentElement.classList.add('active-key');
         }
    }
 
-    if (el) { 
-        let letters = document.getElementsByClassName('en');
-        
+    if (el) {
         if(e.code === 'CapsLock') {            
-            el.classList.toggle('active-key');
-            if(el.classList.contains('active-key')) {
-                CapsLockOn();
+            el.classList.toggle('capslock-on');
+            if(el.classList.contains('capslock-on')) {
+                CapsLockOn();           
             } else {
                 CapsLockOff();
             }
             
         } else {
             el.classList.add('active-key');
+            if (e.code === 'ShiftLeft') {
+                CapsLockOn();
+            }
         }        
       e.preventDefault();
     } 
-
-    textarea.textContent += e.key; 
+    if(en.textContent === 1 || en.textContent === '`') {
+        textarea.textContent += e.key;     
+        console.log(e.key);
+    }
     if(e.code === en.textContent) {
         el.classList.toggle('active-key');
     }
@@ -377,14 +381,16 @@ window.addEventListener('keydown', (e) => {
 window.addEventListener('keyup', (e) => {
     const el = codeToElement[e.code] || $key(e.key.toLowerCase());
     const divs = document.querySelector('.active-key');
-    console.log(divs);
 
     if (e.code !== 'CapsLock' && divs) { 
         divs.classList.remove('active-key');
+        if (e.code === 'ShiftLeft') {
+            CapsLockOff();
+        }
         e.preventDefault();
     }
     if(e.code === en.textContent) {
-            el.classList.remove('active-key');
-        }
-        window.scrollTo(0, document.body.scrollHeight);
+        el.classList.remove('active-key');      
+    }
+    window.scrollTo(0, document.body.scrollHeight);
 })

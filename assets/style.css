@@ -6,7 +6,7 @@ body {
   font-family: "Roboto", sans-serif;
 }
 
-.keyboard__btn.active-key, .keyboard {
+.capslock.capslock-on, .keyboard__btn.active-key, .keyboard {
   -webkit-box-shadow: inset 5px 5px 10px -5px rgb(124, 126, 129);
   -moz-box-shadow: inset 5px 5px 10px -5px rgb(124, 126, 129);
   box-shadow: inset 5px 5px 10px -5px rgb(124, 126, 129);
@@ -465,6 +465,12 @@ h1 {
   font-style: normal;
   font-weight: normal;
   line-height: 1em;
+}
+
+.capslock.capslock-on {
+  background: #008080;
+  color: #ffffff;
+  font-weight: 100;
 }
 
 /*# sourceMappingURL=style.css.map */

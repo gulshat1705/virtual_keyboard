@@ -90,3 +90,12 @@
     @include font($size: 1.0em, $weight: normal);
     
 }
+
+.capslock {
+    &.capslock-on {        
+        background: $color-additional;
+        color: #ffffff;
+        font-weight: 100;
+        @extend %shadow-primary;        
+    }
+}
