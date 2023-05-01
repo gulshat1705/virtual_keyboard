@@ -164,7 +164,7 @@ console.log(keys[6].content[2]);
 const body = document.querySelector('body');
 const wrapper = document.createElement('div');
 const title = document.createElement('h1');
-const textarea = document.createElement('textarea');
+let textarea = document.createElement('textarea');
 const keyboard = document.createElement('div');
 const description = document.createElement('p');
 const language = document.createElement('p');
@@ -330,15 +330,18 @@ const CapsLockOff = () => {
 }
 
 const BackspaceClicked = () => {
-    textarea.substring(0, textarea.length - 1);
+    String(textarea).substring(0, textarea.join('').length - 1);
     console.log(textarea);
+}
+
+const SpaceClicked = () => {
+    textarea += ' ';
 }
 
 window.addEventListener('keydown', (e) => {
     const el = codeToElement[e.code] || $key(e.key.toLowerCase());
     let name = e.key;
-    
- 
+     
     let findKey = [...document.querySelectorAll(".en")]
    .filter(a => a.textContent.includes(name));
 
@@ -370,7 +373,9 @@ window.addEventListener('keydown', (e) => {
                 CapsLockOn();
             } else if (e.code === 'Backspace') {
                 BackspaceClicked();
-            } 
+            } else if (e.code === 'Space') {
+                SpaceClicked();
+            }
         }        
       e.preventDefault();
     } 
