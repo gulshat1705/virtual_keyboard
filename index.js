@@ -329,6 +329,11 @@ const CapsLockOff = () => {
     }
 }
 
+const BackspaceClicked = () => {
+    textarea.substring(0, textarea.length - 1);
+    console.log(textarea);
+}
+
 window.addEventListener('keydown', (e) => {
     const el = codeToElement[e.code] || $key(e.key.toLowerCase());
     let name = e.key;
@@ -363,7 +368,9 @@ window.addEventListener('keydown', (e) => {
             el.classList.add('active-key');
             if (e.code === 'ShiftLeft') {
                 CapsLockOn();
-            }
+            } else if (e.code === 'Backspace') {
+                BackspaceClicked();
+            } 
         }        
       e.preventDefault();
     } 
