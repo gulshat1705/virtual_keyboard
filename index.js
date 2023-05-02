@@ -439,10 +439,6 @@ const langToRu = () => {
     }
 }
 
-const clickedFunction = () => {
-    
-}
-
 window.addEventListener('keydown', (e) => {
     const el = codeToElement[e.code] || $key(e.key.toLowerCase());
     let name = e.key;
@@ -537,3 +533,14 @@ window.addEventListener('keyup', (e) => {
     window.scrollTo(0, document.body.scrollHeight);
 })
 
+for(let i=0; i<keyboard__btn.length; i++) {
+    keyboard__btn[i].addEventListener('click', (e) => {
+      keyboard__btn[i].classList.add('active-key');
+    //   textarea.textContent += en[i].textContent;  
+    if(keyboard__btn[i].textContent.length === 1 || keyboard__btn[i].textContent.length === '▲') {
+        textarea.textContent += e.target.textContent;
+    }     
+      keyboard__btn[i].classList.remove('active-key');
+      
+    })
+}
