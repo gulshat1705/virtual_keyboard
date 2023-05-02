@@ -534,12 +534,14 @@ window.addEventListener('keyup', (e) => {
 })
 
 for(let i=0; i<keyboard__btn.length; i++) {
-    keyboard__btn[i].addEventListener('click', (e) => {
+    keyboard__btn[i].addEventListener('click', () => {
       keyboard__btn[i].classList.add('active-key');
     //   textarea.textContent += en[i].textContent;  
     if(keyboard__btn[i].textContent.length === 1 || keyboard__btn[i].textContent.length === '▲') {
-        textarea.textContent += e.target.textContent;
-    }     
+        console.log(textarea)
+        textarea.value += keyboard__btn[i].textContent;
+    } 
+    textarea.focus()  
       keyboard__btn[i].classList.remove('active-key');
       
     })
