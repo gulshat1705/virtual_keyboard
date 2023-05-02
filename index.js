@@ -292,7 +292,8 @@ addClass(altBtn, 'alt-right');
 
 
 const $key = (key) => (
-    document.querySelector(`div[class='keyboard__btn ${key}']`)    
+
+    document.querySelector(`div[class="keyboard__btn ${key}"]`)    
 );
 
 
