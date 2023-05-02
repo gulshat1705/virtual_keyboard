@@ -320,6 +320,11 @@ const insertLetter = (insert) => {
     textarea.selectionStart = temp + 1;
     textarea.selectionEnd = textarea.selectionStart;
 };
+
+const space = document.querySelector('.space');
+space.addEventListener('click', () => {
+  insertLetter(' ');
+});
 const CapsLockOn = () => {
     let letters = document.getElementsByClassName('en');
     for(let i=0; i<letters.length; i++) {
@@ -389,10 +394,6 @@ const enter = document.querySelector('.enter');
 enter.addEventListener('click', () => {
   insertLetter('\n');
 });
-
-const SpaceClicked = () => {
-    textarea = textarea + '  ';
-}
 
 
 const ShiftClicked = () => {
@@ -493,7 +494,7 @@ window.addEventListener('keydown', (e) => {
                   }
             }
             else if (e.code === 'Space') {
-                SpaceClicked();
+                insertLetter(' ');
             } else if (e.ctrlKey && e.code == 'AltLeft') {
                 console.log('langtoru')
                 let controlLeftClass = document.querySelector('.control-left');
