@@ -406,10 +406,12 @@ shiftBtnKeys.addEventListener('click', () => {
         return contentArray.flat();
     } 
     let result = contentValue(keys);
+    if(sh)
     for(let i=0; i<12; i++) {
         en[i].textContent = result[i];    
     }
     CapsLockOn();
+
 });
 
 const ShiftClicked = () => {
