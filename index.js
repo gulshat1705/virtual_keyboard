@@ -334,11 +334,24 @@ const CapsLockOff = () => {
     }
 }
 
-const BackspaceClicked = () => {
+const BackspaceClicked = () => {    
     
-    String(textarea).substring(0, textarea.split('').length - 1);
-    console.log('backspace');
+    if (textarea.selectionStart === 0) return;
+    const temp = textarea.selectionStart - 1;
+    textarea.value = textarea.value.slice(0, temp) + textarea.value.slice(textarea.selectionEnd, textarea.value.length);
+    textarea.selectionStart = temp;
+    textarea.selectionEnd = textarea.selectionStart;
 }
+
+const backspaceBtn = document.querySelector('.backspace');
+backspaceBtn.addEventListener('click', () => {
+  if (textarea.selectionStart === 0) return;
+  const temp = textarea.selectionStart - 1;
+  textarea.value = textarea.value.slice(0, temp) + textarea.value.slice(textarea.selectionEnd, textarea.value.length);
+  textarea.selectionStart = temp;
+  textarea.selectionEnd = textarea.selectionStart;
+}); 
+
 
 const SpaceClicked = () => {
     textarea = textarea + '  ';
@@ -428,8 +441,9 @@ window.addEventListener('keydown', (e) => {
                 ShiftClicked();
                 
             } else if (e.code === 'Backspace') {
-                BackspaceClicked();
-            } else if (e.code === 'Space') {
+                  BackspaceClicked();
+              } 
+            else if (e.code === 'Space') {
                 SpaceClicked();
             } else if (e.ctrlKey && e.code == 'AltLeft') {
                 console.log('langtoru')
