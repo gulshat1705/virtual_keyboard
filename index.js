@@ -396,6 +396,23 @@ enter.addEventListener('click', () => {
   insertLetter('\n');
 });
 
+const shiftBtnKeys = document.querySelector('.shift-left')
+shiftBtnKeys.addEventListener('click', () => {
+    let contentValue = (keys) => {
+        let contentArray = [];
+        for (let item of keys) {
+            contentArray.push(item.shiftOn);
+        }
+        return contentArray.flat();
+    } 
+    let result = contentValue(keys);
+   
+    for(let i=0; i<12; i++) {
+        en[i].textContent = result[i];    
+    }
+    CapsLockOn();
+
+});
 
 const ShiftClicked = () => {
     let contentValue = (keys) => {
@@ -430,13 +447,16 @@ const langToRu = () => {
     let contentValue = (keys) => {
         let contentArray = [];
         for (let item of keys) {
-            contentArray.push(item.langRu);
+            contentArray.push(item.langRu);            
         }
+        console.log(contentArray)
         return contentArray.flat();
     } 
     let result = contentValue(keys);
-    for(let i=0; i<12; i++) {
-        en[i].textContent = result[i];    
+    
+    for(let i=0; i<en.length; i++) {
+        en[i].innerHTML = result[i];    
+        console.log(result[i])
     }
 }
 
