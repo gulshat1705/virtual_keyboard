@@ -313,7 +313,13 @@ const codeToElement = {
     'MetaLeft': $key('window'),
 }
 
-
+const insertLetter = (insert) => {
+    const temp = textarea.selectionStart;
+    const endCursor = textarea.selectionEnd;
+    textarea.value = textarea.value.slice(0, temp) + insert + textarea.value.slice(endCursor, textarea.value.length);
+    textarea.selectionStart = temp + 1;
+    textarea.selectionEnd = textarea.selectionStart;
+};
 const CapsLockOn = () => {
     let letters = document.getElementsByClassName('en');
     for(let i=0; i<letters.length; i++) {
@@ -352,6 +358,37 @@ backspaceBtn.addEventListener('click', () => {
   textarea.selectionEnd = textarea.selectionStart;
 }); 
 
+
+
+const DeleteClicked = () => {
+    if (textarea.selectionStart === textarea.value.length) return;
+    const temp = textarea.selectionStart;
+    textarea.value = textarea.value.slice(0, temp) + textarea.value.slice(temp + 1, textarea.value.length);
+    textarea.selectionStart = temp;
+    textarea.selectionEnd = textarea.selectionStart;
+}
+
+const deleteKey = document.querySelector('.delete');
+deleteKey.addEventListener('click', () => {
+  if (textarea.selectionStart === textarea.value.length) return;
+  const temp = textarea.selectionStart;
+  textarea.value = textarea.value.slice(0, temp) + textarea.value.slice(temp + 1, textarea.value.length);
+  textarea.selectionStart = temp;
+  textarea.selectionEnd = textarea.selectionStart;
+});
+
+const tabKeyBtn = document.querySelector('.tab');
+tabKeyBtn.addEventListener('click', ()=> {
+        insertLetter(' ');
+        insertLetter(' ');
+        insertLetter(' ');
+        insertLetter(' ');
+} )
+
+const enter = document.querySelector('.enter');
+enter.addEventListener('click', () => {
+  insertLetter('\n');
+});
 
 const SpaceClicked = () => {
     textarea = textarea + '  ';
@@ -442,7 +479,19 @@ window.addEventListener('keydown', (e) => {
                 
             } else if (e.code === 'Backspace') {
                   BackspaceClicked();
-              } 
+            } else if (e.code === 'Delete') {
+                DeleteClicked();
+            } else if (e.code === 'Enter') {
+                insertLetter('\n');
+            } else if (e.code === 'Tab') {
+                if (e.key === 'Tab') {
+                    e.preventDefault();
+                    insertLetter(' ');
+                    insertLetter(' ');
+                    insertLetter(' ');
+                    insertLetter(' ');
+                  }
+            }
             else if (e.code === 'Space') {
                 SpaceClicked();
             } else if (e.ctrlKey && e.code == 'AltLeft') {
