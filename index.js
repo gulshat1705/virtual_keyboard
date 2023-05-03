@@ -326,6 +326,7 @@ const space = document.querySelector('.space');
 space.addEventListener('click', () => {
   insertLetter(' ');
 });
+
 const CapsLockOn = () => {
     let letters = document.getElementsByClassName('en');
     for(let i=0; i<letters.length; i++) {
@@ -335,6 +336,7 @@ const CapsLockOn = () => {
         }        
     }        
 }
+
 
 const CapsLockOff = () => {
     let letters = document.getElementsByClassName('en');
@@ -346,8 +348,26 @@ const CapsLockOff = () => {
     }
 }
 
-const BackspaceClicked = () => {    
-    
+let caps = document.querySelector('.capslock');
+
+caps.addEventListener('click', () => {
+    caps.classList.toggle('capslock-on');
+    let letters = document.getElementsByClassName('en');
+    for(let i=0; i<letters.length; i++) {
+        let letterContent = letters[i].textContent;
+        if(caps.classList.contains('capslock-on')) {
+            if(letterContent.length === 1) {
+                letters[i].innerHTML = letterContent.toLocaleUpperCase();            
+            } 
+        } else 
+            if(letterContent.length === 1) {
+                letters[i].innerHTML = letterContent.toLocaleLowerCase();
+            }
+    }     
+})
+   
+
+const BackspaceClicked = () => {     
     if (textarea.selectionStart === 0) return;
     const temp = textarea.selectionStart - 1;
     textarea.value = textarea.value.slice(0, temp) + textarea.value.slice(textarea.selectionEnd, textarea.value.length);
@@ -479,8 +499,7 @@ window.addEventListener('keydown', (e) => {
         }
    }
 
-    if (el) {
-        
+    if (el) {        
         if(e.code === 'CapsLock') {            
             el.classList.toggle('capslock-on');
             if(el.classList.contains('capslock-on')) {
